@@ -2,7 +2,7 @@ package no.embriq.scala.solution
 
 import java.util.NoSuchElementException
 
-object Solutions {
+object SolutionsOld {
 
   // P01 (*) Find the last element of a list.
   //     Example:
