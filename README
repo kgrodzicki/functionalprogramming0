@@ -1,7 +1,10 @@
 1. intallasjons guide
 Install SBT: http://www.scala-sbt.org/download.html
-Install Idea plugins for scala og sbt
 
+Hvis du har Idea versjon < 13 så installer Idea 14 CE. Testet med Idea 12 fikk ikke importert som sbt prosjekt.
+
+Install Idea plugins for scala og sbt
+- i setteings for scala må man sette hvilken java jdk den skal bruke.
 
 2. functional what
 

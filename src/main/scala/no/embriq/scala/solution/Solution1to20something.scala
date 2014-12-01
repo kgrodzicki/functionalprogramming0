@@ -20,7 +20,7 @@ object Solution1to20something {
 
   def lastWithOption[A](ls: List[A]): Option[A] = ls match {
     case h :: Nil => Some(h)
-    case _ :: tail => last(tail)
+    case _ :: tail => lastWithOption(tail)
     case _ => None
   }
 
