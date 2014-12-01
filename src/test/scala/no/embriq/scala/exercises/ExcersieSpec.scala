@@ -1,24 +1,19 @@
 package no.embriq.scala.exercises
 
-//import no.embriq.scala.exercises.Excersise._
-//import no.embriq.scala.solution.Solutions._
+import no.embriq.scala.solution.Solution1to20something
 import no.embriq.scala.solution.Solution1to20something._
 
 import org.scalatest._
-
-
 
 class ExcersieSpec extends FlatSpec with Matchers with PendingIfUnimplemented {
 
   "P01" should "return last element of list" in {
     last(List(1, 2, 3)) shouldBe 3
     last(List(1, 1, 2, 3, 5, 8)) shouldBe 8
-
   }
 
   "P02" should "return second to last element of list" in {
     penultimate(List(1, 1, 2, 3, 5, 8)) shouldBe 5
-
   }
 
   "P03" should "return nth element of list" in {
@@ -26,9 +21,8 @@ class ExcersieSpec extends FlatSpec with Matchers with PendingIfUnimplemented {
   }
 
   "P04" should "Find the number of elements of a list." in {
-    Excersise.length(List(1, 1, 2, 3, 5, 8)) shouldBe 6
+    Solution1to20something.length(List(1, 1, 2, 3, 5, 8)) shouldBe 6
   }
-
 
   "P05" should "Reverse a list." in {
     reverse(List(1, 1, 2, 3, 5, 8)) shouldBe List(8, 5, 3, 2, 1, 1)
@@ -36,17 +30,15 @@ class ExcersieSpec extends FlatSpec with Matchers with PendingIfUnimplemented {
 
   "P06" should "Find out whether a list is a palindrome." in {
     isPalindrome(List(1, 2, 3, 2, 1)) shouldBe true
+    isPalindrome(List(1, 2, 3, 2, 2)) shouldBe false
   }
-
 
   "P07" should "Flatten a nested list structure." in {
     flatten(List(List(1, 1), 2, List(3, List(5, 8)))) shouldBe List(1, 1, 2, 3, 5, 8)
   }
 
-
   "P08" should "Eliminate consecutive duplicates of list elements." in {
     compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) shouldBe List('a, 'b, 'c, 'a, 'd, 'e)
-
   }
 
   "P09" should "Pack consecutive duplicates of list elements into sublists." in {
@@ -140,7 +132,6 @@ class ExcersieSpec extends FlatSpec with Matchers with PendingIfUnimplemented {
 //  "P28" should "Sorting a list of lists according to length of sublists. b)" in {
 //    lsortFreq(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o))) shouldBe List(List('i, 'j, 'k, 'l), List('o), List('a, 'b, 'c), List('f, 'g, 'h), List('d, 'e), List('d, 'e), List('m, 'n))
 //  }
-
 
 }
 

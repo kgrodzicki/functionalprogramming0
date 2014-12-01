@@ -1,6 +1,5 @@
 package no.embriq.scala.solution
 
-
 object Solution1to20something {
   // P01 (*) Find the last element of a list.
   //     Example:
@@ -11,7 +10,6 @@ object Solution1to20something {
   //     def last[A](l: List[A]): A = ...
   // The `[A]` allows us to handle lists of any type.
 
-
   // The standard functional approach is to recurse down the list until we hit
   // the end.  Scala's pattern matching makes this easy.
   def last[A](ls: List[A]): A = ls match {
@@ -20,20 +18,23 @@ object Solution1to20something {
     case _ => throw new NoSuchElementException
   }
 
+  def lastWithOption[A](ls: List[A]): Option[A] = ls match {
+    case h :: Nil => Some(h)
+    case _ :: tail => last(tail)
+    case _ => None
+  }
+
   // P02 (*) Find the last but one element of a list.
   //     Example:
   //     scala> penultimate(List(1, 1, 2, 3, 5, 8))
   //     res0: Int = 5
 
-
-  // But pattern matching also makes it easy.
   def penultimate[A](ls: List[A]): A = ls match {
     case h :: _ :: Nil => h
     case _ :: tail => penultimate(tail)
     case _ => throw new NoSuchElementException
   }
 
-  // Here's one approach to a non-builtin solution.
   def lastNth[A](n: Int, ls: List[A]): A = {
     def lastNthR(count: Int, resultList: List[A], curList: List[A]): A =
       curList match {
@@ -55,10 +56,8 @@ object Solution1to20something {
   //     scala> nth(2, List(1, 1, 2, 3, 5, 8))
   //     res0: Int = 2
 
-
-  // Not that much harder without.
   def nth[A](n: Int, ls: List[A]): A = (n, ls) match {
-    case (0, h :: _) => h
+    case (n, h :: _) if n == 0 => h
     case (n, _ :: tail) => nth(n - 1, tail)
     case (_, Nil) => throw new NoSuchElementException
   }
@@ -68,8 +67,6 @@ object Solution1to20something {
   //     scala> length(List(1, 1, 2, 3, 5, 8))
   //     res0: Int = 6
 
-
-  // Simple recursive solution.
   def length[A](ls: List[A]): Int = ls match {
     case Nil => 0
     case _ :: tail => 1 + length(tail)
@@ -96,12 +93,10 @@ object Solution1to20something {
     (c, _) => c + 1
   }
 
-
   // P05 (*) Reverse a list.
   //     Example:
   //     scala> reverse(List(1, 1, 2, 3, 5, 8))
   //     res0: List[Int] = List(8, 5, 3, 2, 1, 1)
-
 
   // Simple recursive.  O(n^2)
   def reverse[A](ls: List[A]): List[A] = ls match {
@@ -129,7 +124,6 @@ object Solution1to20something {
   //     scala> isPalindrome(List(1, 2, 3, 2, 1))
   //     res0: Boolean = true
 
-
   // In theory, we could be slightly more efficient than this.  This approach
   // traverses the list twice: once to reverse it, and once to check equality.
   // Technically, we only need to check the first half of the list for equality
@@ -145,14 +139,10 @@ object Solution1to20something {
   //     scala> flatten(List(List(1, 1), 2, List(3, List(5, 8))))
   //     res0: List[Any] = List(1, 1, 2, 3, 5, 8)
 
-
   def flatten(ls: List[Any]): List[Any] = ls flatMap {
     case ms: List[_] => flatten(ms)
     case e => List(e)
   }
-
-  // todo: recursive...
-
 
   // P08 (**) Eliminate consecutive duplicates of list elements.
   //     If a list contains repeated elements they should be replaced with a
@@ -163,13 +153,11 @@ object Solution1to20something {
   //     scala> compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
   //     res0: List[Symbol] = List('a, 'b, 'c, 'a, 'd, 'e)
 
-
   // Standard recursive.
   def compress[A](ls: List[A]): List[A] = ls match {
     case Nil => Nil
     case h :: tail => h :: compress(tail.dropWhile(_ == h))
   }
-
   // Tail recursive.
   def compressTailRecursive[A](ls: List[A]): List[A] = {
     def compressR(result: List[A], curList: List[A]): List[A] = curList match {
@@ -194,7 +182,6 @@ object Solution1to20something {
   //     Example:
   //     scala> pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
   //     res0: List[List[Symbol]] = List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
-
 
   def pack[A](ls: List[A]): List[List[A]] = {
     if (ls.isEmpty) List(List())
@@ -229,7 +216,6 @@ object Solution1to20something {
   //     scala> encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
   //     res0: List[Any] = List((4,'a), 'b, (2,'c), (2,'a), 'd, (4,'e))
 
-
   def encodeModified[A](ls: List[A]): List[Any] =
     encode(ls) map { t => if (t._1 == 1) t._2 else t}
 
@@ -245,7 +231,6 @@ object Solution1to20something {
   //     scala> decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
   //     res0: List[Symbol] = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
 
-
   def decode[A](ls: List[(Int, A)]): List[A] =
     ls flatMap { e => List.fill(e._1)(e._2)}
 
@@ -257,7 +242,6 @@ object Solution1to20something {
   //     Example:
   //     scala> encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
   //     res0: List[(Int, Symbol)] = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
-
 
   // This is basically a modification of P09.
   def encodeDirect[A](ls: List[A]): List[(Int, A)] =
@@ -274,14 +258,12 @@ object Solution1to20something {
   //     scala> duplicate(List('a, 'b, 'c, 'c, 'd))
   //     res0: List[Symbol] = List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
 
-
   def duplicate[A](ls: List[A]): List[A] = ls flatMap { e => List(e, e)}
 
   // P15 (**) Duplicate the elements of a list a given number of times.
   //     Example:
   //     scala> duplicateN(3, List('a, 'b, 'c, 'c, 'd))
   //     res0: List[Symbol] = List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
-
 
   def duplicateN[A](n: Int, ls: List[A]): List[A] =
     ls flatMap {
@@ -292,7 +274,6 @@ object Solution1to20something {
   //     Example:
   //     scala> drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   //     res0: List[Symbol] = List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
-
 
   // Simple recursion.
   def drop[A](n: Int, ls: List[A]): List[A] = {
@@ -327,7 +308,6 @@ object Solution1to20something {
   //     scala> split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   //     res0: (List[Symbol], List[Symbol]) = (List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
 
-
   // Simple recursion.
   def split[A](n: Int, ls: List[A]): (List[A], List[A]) = (n, ls) match {
     case (_, Nil) => (Nil, Nil)
@@ -361,7 +341,6 @@ object Solution1to20something {
   //     Example:
   //     scala> slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   //     res0: List[Symbol] = List('d, 'e, 'f, 'g)
-
 
   // Simple recursive.
   def slice[A](start: Int, end: Int, ls: List[A]): List[A] =
@@ -408,13 +387,11 @@ object Solution1to20something {
   //     scala> rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   //     res1: List[Symbol] = List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
 
-
   def rotate[A](n: Int, ls: List[A]): List[A] = {
     val nBounded = if (ls.isEmpty) 0 else n % ls.length
     if (nBounded < 0) rotate(nBounded + ls.length, ls)
     else (ls drop nBounded) ::: (ls take nBounded)
   }
-
 
   // P20 (*) Remove the Kth element from a list.
   //     Return the list and the removed element in a Tuple.  Elements are
@@ -450,7 +427,6 @@ object Solution1to20something {
   //     scala> insertAt('new, 1, List('a, 'b, 'c, 'd))
   //     res0: List[Symbol] = List('a, 'new, 'b, 'c, 'd)
 
-
   def insertAt[A](e: A, n: Int, ls: List[A]): List[A] = ls.splitAt(n) match {
     case (pre, post) => pre ::: e :: post
   }
@@ -459,7 +435,6 @@ object Solution1to20something {
   //     Example:
   //     scala> range(4, 9)
   //     res0: List[Int] = List(4, 5, 6, 7, 8, 9)
-
 
   // Recursive.
   def range(start: Int, end: Int): List[Int] =
@@ -576,7 +551,6 @@ object Solution1to20something {
   //     Example:
   //     scala> combinations(3, List('a, 'b, 'c, 'd, 'e, 'f))
   //     res0: List[List[Symbol]] = List(List('a, 'b, 'c), List('a, 'b, 'd), List('a, 'b, 'e), ...
-
 
   // flatMapSublists is like list.flatMap, but instead of passing each element
   // to the function, it passes successive sublists of L.
