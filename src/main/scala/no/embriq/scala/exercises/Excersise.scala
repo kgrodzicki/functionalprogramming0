@@ -26,7 +26,7 @@ object Excersise {
   //  Example:
   //    scala> length(List(1, 1, 2, 3, 5, 8))
   //		res0: Int = 6
-  def length[A](ls: List[A]): Int = ???
+  def lengthRecursive[A](ls: List[A]): Int = ???
 
 
   // P05 (Lett) Reverse a list.

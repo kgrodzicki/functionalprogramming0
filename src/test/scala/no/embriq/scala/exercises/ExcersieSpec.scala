@@ -1,7 +1,6 @@
 package no.embriq.scala.exercises
 
-import no.embriq.scala.solution.Solution1to20something
-import no.embriq.scala.solution.Solution1to20something._
+import no.embriq.scala.exercises.Excersise._
 
 import org.scalatest._
 
@@ -21,7 +20,7 @@ class ExcersieSpec extends FlatSpec with Matchers with PendingIfUnimplemented {
   }
 
   "P04" should "Find the number of elements of a list." in {
-    Solution1to20something.length(List(1, 1, 2, 3, 5, 8)) shouldBe 6
+    lengthRecursive(List(1, 1, 2, 3, 5, 8)) shouldBe 6
   }
 
   "P05" should "Reverse a list." in {
@@ -57,7 +56,7 @@ class ExcersieSpec extends FlatSpec with Matchers with PendingIfUnimplemented {
     decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))) shouldBe List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
   }
 
-  "P13" should "." in {
+  "P13" should "Run-length encoding of a list." in {
     encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) shouldBe List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))
   }
 
