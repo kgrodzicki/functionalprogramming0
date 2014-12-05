@@ -2,13 +2,13 @@
 // tre klassiske FP funksjoner
 
 // Map
-def map[A, B](list: List[A], f: (A) => B): List[B] = list match {
+def map[A, B](list: List[A], f: A => B): List[B] = list match {
   case Nil => Nil
   case x :: xs => f(x) :: map(xs, f)
 }
 
 // filter
-def filter[A](list: List[A], f: (A) => Boolean): List[A] = list match {
+def filter[A](list: List[A], f: A => Boolean): List[A] = list match {
   case Nil => Nil
   case x :: xs if f(x) => x :: filter(xs, f)
   case _ :: xs => filter(xs, f)
@@ -32,6 +32,8 @@ def isTwoFunc(i: Int): Boolean = 2 == i
 val isTwoVal = (x: Int) => x == 2
 
 def isMoreThanOne(i: Int): Boolean = 1 < i
+
+
 
 map(l1, double)
 filter(l1, isTwoFunc)

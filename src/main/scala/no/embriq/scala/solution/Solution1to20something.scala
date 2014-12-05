@@ -89,9 +89,7 @@ object Solution1to20something {
   }
 
   // More pure functional solution, with folds.
-  def lengthFunctional[A](ls: List[A]): Int = ls.foldLeft(0) {
-    (c, _) => c + 1
-  }
+  def lengthFunctional[A](ls: List[A]): Int = ls.foldLeft(0) { (c, _) => c + 1 }
 
   // P05 (*) Reverse a list.
   //     Example:
@@ -158,6 +156,7 @@ object Solution1to20something {
     case Nil => Nil
     case h :: tail => h :: compress(tail.dropWhile(_ == h))
   }
+
   // Tail recursive.
   def compressTailRecursive[A](ls: List[A]): List[A] = {
     def compressR(result: List[A], curList: List[A]): List[A] = curList match {

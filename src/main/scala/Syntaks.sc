@@ -28,14 +28,14 @@ val l2 = List(1, 2, 3) // sukra kort form
 
 // Pattern match
 val x = l1 match {
-  case head :: tail => head   // ikke tilfeldig head :: tail syntaksen.
+  case head :: tail => head // ikke tilfeldig head :: tail syntaksen.
   case Nil => 0
 }
 
 // for comprehension
-for { x <- 1 to 10} yield x  // helt standard for each
+for {x <- 1 to 10} yield x // helt standard for each
 
-for { x <- 1 to 10 if x % 2 == 0} yield x // samme men ed et filter
+for {x <- 1 to 10 if x % 2 == 0} yield x // samme men ed et filter
 
 // flere "generatorer" og en funksjon på resultatet.
 for {
@@ -51,7 +51,19 @@ val o1 = Some(1)
 val o2 = None
 
 
-for { v1 <- o1; v2 <- o2 } yield v1
+for {v1 <- o1; v2 <- o2} yield v1
+
+
+//Recurson
+def sum(l: List[Int]): Int = l match {
+  case x :: xs => x + sum(xs)
+  case Nil => 0
+}
+sum(List(1,2,3))
+
+def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+gcd(14,6)
+
 
 
 
