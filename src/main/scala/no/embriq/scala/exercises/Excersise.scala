@@ -87,7 +87,17 @@ object Excersise {
   //	Example: 
   //		scala> compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
   //		res0: List[Symbol] = List('a, 'b, 'c, 'a, 'd, 'e)
-  def compress[A](ls: List[A]): List[A] = ???
+  def compress[A](ls: List[A]): List[A] = {
+    def compress(result: List[A], ls: List[A]): List[A] = ls match {
+      case Nil => result
+      case head :: tail =>
+        if (!result.isEmpty && last(result) == head)
+          compress(result, tail)
+        else
+          compress(result :+ head, tail)
+    }
+    compress(Nil, ls)
+  }
 
   // P09 (Middels vanskelig) Pack consecutive duplicates of list elements into sublists.
   //If a list contains repeated elements they should be placed in separate sublists. 
