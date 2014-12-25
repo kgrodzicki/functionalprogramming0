@@ -216,7 +216,7 @@ object Excersise {
   //	Example: 
   //		scala> removeAt(1, List('a, 'b, 'c, 'd))
   //		res0: (List[Symbol], Symbol) = (List('a, 'c, 'd),'b)
-  def removeAt[A](n: Int, ls: List[A]): (List[A], A) = ???
+  def removeAt[A](n: Int, ls: List[A]): (List[A], A) = (ls.take(n) ++ ls.drop(n + 1), ls(n))
 
   // P21 (Lett) Insert an element at a given position into a list.
   //	Example: 
