@@ -203,7 +203,13 @@ object Excersise {
   //
   //		scala> rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   //		res1: List[Symbol] = List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
-  def rotate[A](n: Int, ls: List[A]): List[A] = ???
+  def rotate[A](n: Int, ls: List[A]): List[A] = n match {
+    case 0 => ls
+    case p: Int if p > 0 =>
+      ls.drop(p) ++ ls.take(p)
+    case m: Int if m < 0 =>
+      ls.drop(ls.size + m) ++ ls.take(ls.size + m)
+  }
 
   // P20 (Lett) Remove the Kth element from a list.
   //Return the list and the removed element in a Tuple. Elements are numbered from 0. 
