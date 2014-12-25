@@ -154,7 +154,9 @@ object Excersise {
   //	Example: 
   //		scala> duplicate(List('a, 'b, 'c, 'c, 'd))
   //		res0: List[Symbol] = List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
-  def duplicate[A](ls: List[A]): List[A] = ???
+  def duplicate[A](ls: List[A]): List[A] = ls flatMap {
+    case elem => List(elem, elem)
+  }
 
   // P15 (Middels vanskelig) Duplicate the elements of a list a given number of times.
   //	Example: 
