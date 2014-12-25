@@ -170,7 +170,17 @@ object Excersise {
   //	Example: 
   //		scala> drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   //		res0: List[Symbol] = List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
-  def drop[A](n: Int, ls: List[A]): List[A] = ???
+  def drop[A](n: Int, ls: List[A]): List[A] = {
+    def drop(idx: Int, result: List[A], ls: List[A]): List[A] = ls match {
+      case Nil => result
+      case head :: tail =>
+        if (idx == n)
+          drop(1, result, tail)
+        else
+          drop(idx + 1, result :+ head, tail)
+    }
+    drop(1, Nil, ls)
+  }
 
   // P17 (Lett) Split a list into two parts.
   //The length of the first part is given. Use a Tuple for your result. 
