@@ -70,7 +70,7 @@ object Excersise {
   //	Example: 
   //		scala> isPalindrome(List(1, 2, 3, 2, 1))
   //		res0: Boolean = true
-  def isPalindrome[A](ls: List[A]): Boolean = ???
+  def isPalindrome[A](ls: List[A]): Boolean = ls == reverse(ls)
 
   // P07 (Middels vanskelig) Flatten a nested list structure.
   //	Example: 
