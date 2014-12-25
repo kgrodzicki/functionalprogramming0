@@ -45,7 +45,13 @@ object Excersise {
   //  Example:
   //    scala> length(List(1, 1, 2, 3, 5, 8))
   //		res0: Int = 6
-  def lengthRecursive[A](ls: List[A]): Int = ???
+  def lengthRecursive[A](ls: List[A]): Int = {
+    def findLength(count: Int, ls: List[A]): Int = ls match {
+      case Nil => count
+      case head :: tail => findLength(count + 1, tail)
+    }
+    findLength(0, ls)
+  }
 
 
   // P05 (Lett) Reverse a list.
