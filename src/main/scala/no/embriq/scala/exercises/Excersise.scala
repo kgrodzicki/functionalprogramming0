@@ -222,7 +222,7 @@ object Excersise {
   //	Example: 
   //		scala> insertAt('new, 1, List('a, 'b, 'c, 'd))
   //		res0: List[Symbol] = List('a, 'new, 'b, 'c, 'd)
-  def insertAt[A](e: A, n: Int, ls: List[A]): List[A] = ???
+  def insertAt[A](e: A, n: Int, ls: List[A]): List[A] = ls.take(n) ::: e :: ls.drop(n)
 
   // P22 (Lett) Create a list containing all integers within a given range.
   //	Example: 
