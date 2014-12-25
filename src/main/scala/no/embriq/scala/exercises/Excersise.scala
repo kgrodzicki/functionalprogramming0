@@ -194,7 +194,7 @@ object Excersise {
   //	Example: 
   //		scala> slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   //		res0: List[Symbol] = List('d, 'e, 'f, 'g)
-  def slice[A](start: Int, end: Int, ls: List[A]): List[A] = ???
+  def slice[A](start: Int, end: Int, ls: List[A]): List[A] = ls.drop(3).take(end - start)
 
   // P19 (Middels vanskelig) Rotate a list N places to the left.
   //	Examples: 
