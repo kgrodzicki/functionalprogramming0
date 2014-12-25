@@ -115,7 +115,9 @@ object Excersise {
   //	Example: 
   //		scala> encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
   //		res0: List[(Int, Symbol)] = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
-  def encode[A](ls: List[A]): List[(Int, A)] = ???
+  def encode[A](ls: List[A]): List[(Int, A)] = pack(ls) flatMap {
+    case list: List[A] => List((list.size, list.head))
+  }
 
   // P11 (Lett) Modified run-length encoding.
   //Modify the result of problem P10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as (N, E) terms. 
