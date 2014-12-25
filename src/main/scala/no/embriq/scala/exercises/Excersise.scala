@@ -228,7 +228,11 @@ object Excersise {
   //	Example: 
   //		scala> range(4, 9)
   //		res0: List[Int] = List(4, 5, 6, 7, 8, 9)
-  def range(start: Int, end: Int): List[Int] = ???
+  def range(start: Int, end: Int): List[Int] =
+    if (start <= end)
+      start :: range(start + 1, end)
+    else
+      Nil
 
   // P23 (Middels vanskelig) Extract a given number of randomly selected elements from a list.
   //	Example: 
