@@ -143,7 +143,12 @@ object Excersise {
   //	Example: 
   //		scala> encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
   //		res0: List[(Int, Symbol)] = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
-  def encodeDirect[A](ls: List[A]): List[(Int, A)] = ???
+  def encodeDirect[A](ls: List[A]): List[(Int, A)] = ls match {
+    case Nil => Nil
+    case head :: tail =>
+      val all = head :: tail.takeWhile(_ == head)
+      (all.size, head) :: encodeDirect(tail.dropWhile(_ == head))
+  }
 
   // P14 (Lett) Duplicate the elements of a list.
   //	Example: 
