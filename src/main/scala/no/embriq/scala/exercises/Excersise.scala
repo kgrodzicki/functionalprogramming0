@@ -29,7 +29,17 @@ object Excersise {
   //     Example:
   //     scala> nth(2, List(1, 1, 2, 3, 5, 8))
   //     res0: Int = 2
-  def nth[A](n: Int, l: List[A]): A = ???
+  def nth[A](n: Int, l: List[A]): A = {
+    def find(idx: Int, n: Int, l: List[A]): A = l match {
+      case Nil => throw new IllegalArgumentException
+      case head :: tail =>
+        if (idx == n)
+          head
+        else
+          find(idx + 1, n, tail)
+    }
+    find(0, n, l)
+  }
 
   // P04 (Lett) Find the number of elements of a list.
   //  Example:
