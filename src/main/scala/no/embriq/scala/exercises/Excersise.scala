@@ -6,7 +6,11 @@ object Excersise {
   //     Example:
   //     scala> last(List(1, 1, 2, 3, 5, 8))
   //     res0: Int = 8
-  def last[A](l: List[A]): A = ???
+  def last[A](l: List[A]): A = l match {
+    case Nil => throw new IllegalArgumentException
+    case List(last) => last
+    case head :: tail => last(tail)
+  }
 
   // P02 (Lett) Find the last but one element of a list.
   //     Example:
