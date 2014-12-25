@@ -162,7 +162,9 @@ object Excersise {
   //	Example: 
   //		scala> duplicateN(3, List('a, 'b, 'c, 'c, 'd))
   //		res0: List[Symbol] = List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
-  def duplicateN[A](n: Int, ls: List[A]): List[A] = ???
+  def duplicateN[A](n: Int, ls: List[A]): List[A] = ls flatMap {
+    case elem => List.fill(n)(elem)
+  }
 
   // P16 (Middels vanskelig) Drop every Nth element from a list.
   //	Example: 
