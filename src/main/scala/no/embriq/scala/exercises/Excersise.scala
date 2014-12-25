@@ -76,7 +76,11 @@ object Excersise {
   //	Example: 
   //		scala> flatten(List(List(1, 1), 2, List(3, List(5, 8))))
   //		res0: List[Any] = List(1, 1, 2, 3, 5, 8)
-  def flatten(ls: List[Any]): List[Any] = ???
+  def flatten(ls: List[Any]): List[Any] = ls flatMap {
+    case ls: List[Any] => flatten(ls)
+    case a => List(a)
+
+  }
 
   // P08 (Middels vanskelig) Eliminate consecutive duplicates of list elements.
   //If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed. 
