@@ -187,7 +187,7 @@ object Excersise {
   //	Example: 
   //		scala> split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   //		res0: (List[Symbol], List[Symbol]) = (List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
-  def split[A](n: Int, ls: List[A]): (List[A], List[A]) = ???
+  def split[A](n: Int, ls: List[A]): (List[A], List[A]) = (ls.take(n), ls.drop(n))
 
   // P18 (Middels vanskelig) Extract a slice from a list.
   //Given two indices, I and K, the slice is the list containing the elements from and including the Ith element up to but not including the Kth element of the original list. Start counting the elements with 0. 
