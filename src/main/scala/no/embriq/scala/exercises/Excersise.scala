@@ -58,7 +58,13 @@ object Excersise {
   //	Example: 
   //		scala> reverse(List(1, 1, 2, 3, 5, 8))
   //		res0: List[Int] = List(8, 5, 3, 2, 1, 1)
-  def reverse[A](ls: List[A]): List[A] = ???
+  def reverse[A](ls: List[A]): List[A] = {
+    def reverse(buf: List[A], ls: List[A]): List[A] = ls match {
+      case Nil => buf
+      case head :: tail => reverse(head :: buf, tail)
+    }
+    reverse(Nil, ls)
+  }
 
   // P06 (Lett) Find out whether a list is a palindrome.
   //	Example: 
